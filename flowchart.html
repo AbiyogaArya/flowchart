@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flowchart</title>
+    <style>
+      h2 {
+        text-align: center;
+      }
+      input {
+        cursor: pointer;
+      }
+      #kuis {
+        margin: 5px;
+      }
+      #uts {
+        margin: 5px;
+      }
+      #uas {
+        margin: 5px;
+      }
+      #nilai-akhir {
+        margin: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Perhitungan Nilai Akhir</h2>
+    Nama Siswa : <input type="text" name="name" /> <br />
+    Nilai Kuis : <input type="number" name="kuis" id="kuis" /> <br />
+    Nilai UTS : <input type="number" name="uts" id="uts" /> <br />
+    Nilai UAS : <input type="number" name="uas" id="uas" /><br />
+    Rata-Rata : <input type="#" name="rata-rata" id="rata-rata" disabled /><br />
+    Hasil Nilai Akhir : <input type="#" name="nilai-akhir" id="nilai-akhir" disabled /><br />
+    Keterangan : <input type="#" name="keterangan" id="keterangan" disabled /><br />
+
+    <script>
+      const kuis = document.getElementById('kuis');
+      const uts = document.getElementById('uts');
+      const uas = document.getElementById('uas');
+      const rata = document.getElementById('rata-rata');
+      const nilaiAkhir = document.getElementById('nilai-akhir');
+      const keterangan = document.getElementById('keterangan');
+
+      function hitungNilai() {
+        const na = (Number(kuis.value) + Number(uts.value) + Number(uas.value)) / 3;
+        nilaiAkhir.value = na;
+        rata.value = na.toFixed(2);
+
+        if (Math.round(na) < 70) {
+          keterangan.value = 'Kurang Baik';
+        } else if (Math.round(na) < 80) {
+          keterangan.value = 'Baik';
+        } else {
+          keterangan.value = 'Sangat Baik';
+        }
+      }
+
+      kuis.onkeyup = hitungNilai;
+
+      uts.onkeyup = hitungNilai;
+      uas.onkeyup = hitungNilai;
+    </script>
+  </body>
+</html>
